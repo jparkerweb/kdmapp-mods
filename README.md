@@ -18,6 +18,7 @@ https://boardgamegeek.com/article/31989187
 ## Mod List
 
 * __Hunt Event Input Pad__  
+mouse friendly keypad for entering hunt event numbers  
 ![hunt event input pad](https://www.dropbox.com/s/6as4tcaua1380ea/keypad.gif?raw=1)
 
 
