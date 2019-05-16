@@ -5,6 +5,7 @@ https://kdm-story.site/
 ----
 
 ## Install
+_assumes you have the [kdm-sotry app](https://kdm-story.site/) installed_  
 Download and paste/overwrite all these files into the following folder:  
 `\resources\app`
 
