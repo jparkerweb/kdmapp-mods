@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en"  bgcolor="#000000">
+
+<head>
+	<meta name="viewport" charset="UTF-8" content="height=device-height, initial-scale=1">
+	<title>
+		kingdom death
+	</title>
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/menu.css">
+</head>
+
+<body bgcolor="#000000">
+	<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/howler.core.min.js"></script>
+
+	<script type="text/javascript" src="js/events.js"></script>
+	<script type="text/javascript" src="js/transition.js"></script>
+	<script type="text/javascript" src="js/menu.js"></script>
+	<script type="text/javascript" src="js/about.js"></script>
+
+	<script>if (window.module) module = window.module;</script>
+
+	<div id="container">
+
+		<img id="back" src="images/back.jpg"/>
+
+		<video id="video" src="video/intro.mp4" width="1440" height="990"></video>
+
+		<div class="index" id="label_text" >
+			KINGDOM DEATH: MONSTER 1.5
+		</div>
+
+		<audio id="open_audio" src="audio/theme.mp3" loop="loop"></audio>
+
+		<button class="button">Mute</button>
+		<button class="button_video">Intro</button>
+	</div>
+
+	<script type="text/javascript">
+		$(document).ready(function ()
+		{
+			jQuery(function() {
+
+				$("#label_text").hide();
+				$("#menu").hide();
+				$("#video").hide();
+				$(".button_video").hide();
+
+				const electron = require('electron');
+				var screenElectron = electron.screen;
+				var mainScreen = screenElectron.getPrimaryDisplay();
+				var dimensions = mainScreen.size;
+
+				console.log(dimensions.width + "x" + dimensions.height);
+
+				$("#video").attr('width', dimensions.width);
+				$("#video").attr('height', dimensions.height);
+
+				var music = new Howl({
+					src: ["audio/theme.mp3"],
+					// autoplay: true,
+					loop: true,
+					volume: 0.8
+				});
+
+				var action = "false"
+
+				// $("#open_audio").get(0).volume = 1.0
+				// $("#open_audio").get(0).play();
+				music.on('load', function()
+				{
+					music.play();
+				});
+
+
+				$("#label_text").delay(2000).fadeIn(8000);
+				$(".button_video").delay(2000).fadeIn(3000);
+
+				createMenuButton();
+
+				createToc();
+
+				createAbout();
+
+				$(".button").click(function(){
+					console.log("Here1!");
+					if(!$(this).hasClass('active'))
+					{
+						// $("#open_audio").get(0).pause();
+						music.mute(true)
+						// $("#speech").get(0).pause();
+						console.log("Here2!");
+					} else
+					{
+						// $("#open_audio").get(0).play();
+						music.mute(false)
+						// $("#speech").get(0).play();
+					};
+					$(this).toggleClass('active');
+					console.log("Here3!");
+				});
+
+				$(".button_video").click(function(){
+					console.log("Here1!");
+					if(!$(this).hasClass('active'))
+					{
+						// $("#open_audio").get(0).pause();
+						music.stop()
+						$("#video").get(0).currentTime = 0
+						// $("#open_audio").get(0).currentTime = 0
+						$("#video").show();
+						$("#video").get(0).play()
+						$(".button").hide()
+						$("#label_text").hide();
+						console.log("Here2!");
+					} else
+					{
+						// $("#open_audio").currentTime = 0
+						setTimeout(function()
+						{
+							music.play();
+						}, 500);
+
+						$("#video").get(0).pause()
+						$("#video").hide();
+						$(".button").show()
+						$("#label_text").fadeIn(8000);
+					};
+					$(this).toggleClass('active');
+					$(this).toggleClass('fadeOut')
+					console.log("Here3!");
+				});
+
+				$('video').on('ended',function(){
+					// $("#open_audio").currentTime = 0
+					music.play();
+					// $("#open_audio").get(0).play();
+					$("#video").hide();
+					$(".button").show()
+					$("#label_text").delay(2000).fadeIn(8000);
+					$(this).removeClass('fadeOut')
+				});
+
+				sessionStorage.setItem("back_target", null);
+
+				$('body').on('click','#menu_item',function(){setTransition($(this).attr('target'), 'menu')})
+
+			});
+
+		});
+
+	</script>
+
+</body>
+
+</html>
