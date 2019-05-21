@@ -138,6 +138,8 @@ function createReference() {
 	// $('#reference-window-back').append('<label for="reference-window">Terms:</label>')
 	$('#reference-window-back0').append('<select id="reference-window" class="reference-window" placeholder="Type term..."></select>')
 	$('#reference-window-back0').append($('<div>',{id:'reference-window-back'}));
+	$('#reference-window-back0').append($('<div>',{id:'reference-window-keypad'}));
+	populateRefKeypad();
 
 	$('#reference-window-back0').hide();
 
@@ -250,6 +252,18 @@ function createReference() {
 		}
 	});
 
+	function populateRefKeypad() {
+		var refPadArr = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','space','clear','random']
+		var txtPad = "<input type='hidden' id='refPadHiddenValue' />"
+
+		var i;
+		for (i = 0; i < refPadArr.length; i++) { 
+			txtPad = txtPad + "<div class='refpad__pad' onClick='refPadEntry(\"" + refPadArr[i] + "\")'>" + refPadArr[i] + "</div>"
+		}
+
+		let refKeypad = document.getElementById("reference-window-keypad")
+		refKeypad.innerHTML = txtPad
+	}
 
 	$('#reference').hover(function()
 	{
@@ -292,6 +306,26 @@ function createReference() {
 		$('#reference').removeClass('active');
 	});
 
+}
+
+function refPadEntry(refValue) {
+	var refInput = document.getElementById("reference-window-selectized")
+	var refHiddenInput = document.getElementById("refPadHiddenValue")
+	// console.log("refInput.value", refInput.value)
+	// console.log("refHiddenInput.value", refHiddenInput.value)
+	
+	if (refValue === "space") {
+		refHiddenInput.value = refHiddenInput.value + " "	
+	} else if (refValue === "random") {
+		refHiddenInput.value = "random"
+	} else if (refValue === "clear") {
+		refHiddenInput.value = ""
+	} else {
+		refHiddenInput.value = refHiddenInput.value + refValue	
+	}
+
+	refInput.value = refHiddenInput.value
+	refInput.focus()
 }
 
 function adapt_name(name) {

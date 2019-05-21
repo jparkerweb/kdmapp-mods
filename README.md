@@ -22,6 +22,10 @@ https://boardgamegeek.com/article/31989187
 mouse friendly keypad for entering hunt event numbers  
 ![hunt event input pad](docs/keypad.gif)
 
+* __Reference Keyboard__
+mouse friendly keyboard for entering reference entires
+![reference keyboard](docs/reference-keyboard.gif)
+
 
 ----
 #### Notes
