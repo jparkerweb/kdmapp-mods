@@ -253,12 +253,20 @@ function createReference() {
 	});
 
 	function populateRefKeypad() {
-		var refPadArr = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','space','clear','random']
+		var refPadArr = ['row-start','q','w','e','r','t','y','u','i','o','p','row-end','row-start','a','s','d','f','g','h','j','k','l','row-end','row-start','z','x','c','v','b','n','m','row-end','row-start','space','clear','random','row-end']
 		var txtPad = "<input type='hidden' id='refPadHiddenValue' />"
 
 		var i;
 		for (i = 0; i < refPadArr.length; i++) { 
-			txtPad = txtPad + "<div class='refpad__pad' onClick='refPadEntry(\"" + refPadArr[i] + "\")'>" + refPadArr[i] + "</div>"
+			if (refPadArr[i] === 'row-start') { txtPad = txtPad + "<div class='refpad--row'>" }
+			else if (refPadArr[i] === 'row-end') { txtPad = txtPad + "</div>" }
+			else {
+				if (refPadArr[i].length > 0) {
+					txtPad = txtPad + "<div class='refpad__pad -" + refPadArr[i] + "' onClick='refPadEntry(\"" + refPadArr[i] + "\")'>" + refPadArr[i] + "</div>"
+				} else {
+					txtPad = txtPad + "<div class='refpad__pad' onClick='refPadEntry(\"" + refPadArr[i] + "\")'>" + refPadArr[i] + "</div>"
+				}
+			}
 		}
 
 		let refKeypad = document.getElementById("reference-window-keypad")

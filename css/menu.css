@@ -283,42 +283,47 @@ div#reference-window-back0 .selectize-control {
 
 #reference-window-keypad {
 	position: absolute;
-    right: -100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    width: 90%;
-    color: white;
-    font-size: 2em;
-    flex-wrap: wrap;
-    top: 0;
-    background: #222;
-    padding: 20px;
-    border: 3px solid #666;
-    border-radius: 15px;
+	right: -630px;
+	display: block;
+	padding: 20px;
+	width: 575px;
+	color: white;
+	font-size: 2em;
+	top: -3px;
+	background: #222;
+	border: 3px solid #666;
+	border-radius: 15px;
 }
 
+.refpad--row:nth-of-type(2) { margin-left: 30px; }
+.refpad--row:nth-of-type(3) { margin-left: 50px; }
+.refpad--row:nth-of-type(4) { margin: 20px 0 0 50px; }
+
 .refpad__pad {
+	display: inline-block;
+	margin: 5px;
+	padding: 3px 15px 0 15px;
+	opacity: .7;
 	cursor: pointer;
 	border-radius: 3px;
 	border: 1px solid #ededed;
-	opacity: .7;
 	transition: 200ms ease-in-out background;
-	padding: 0 17px;
-	margin: 5px;
 	user-select: none;
 	font-family: 'Silverado';
 	text-transform: capitalize;
+	font-size: 0.9em;
+	line-height: 1.38;
+	box-sizing: border-box;
 }
 .refpad__pad:hover {
 	background: #ffffff42;
 	opacity: 1;
 }
-.refpad__pad:last-of-type {
-    margin-left: 90px;
-    text-transform: lowercase;
-    font-style: italic;
-    opacity: 0.4;
+.refpad__pad.-random {
+	margin-left: 90px;
+	text-transform: lowercase;
+	font-style: italic;
+	opacity: 0.4;
 }
 
 #glossary-symbols {
