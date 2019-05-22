@@ -6,8 +6,7 @@ https://kdm-story.site/
 
 ## Install
 _assumes you have the [kdm-sotry app](https://kdm-story.site/) installed_  
-Download and paste/overwrite all these files into the following folder:  
-`\resources\app`
+Download and extract (overwrite) all files from this repo ([link here](https://github.com/jparkerweb/kdmapp-mods/archive/master.zip)) into the `Kingdom Death 1.5 Story\resources\app` folder.
 
 ----
 ### Discussion/Community
